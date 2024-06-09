@@ -29,7 +29,7 @@ $ hexo generate
 
 More info: [Generating](https://hexo.io/docs/generating.html)
 
-sss
+ssss
 
 ### Deploy to remote sites
 
