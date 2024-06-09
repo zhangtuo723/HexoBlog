@@ -30,7 +30,7 @@ $ hexo generate
 More info: [Generating](https://hexo.io/docs/generating.html)
 
 sssss
-f
+ff
 ### Deploy to remote sites
 
 ``` bash
