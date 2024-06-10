@@ -29,19 +29,19 @@ cover: https://test-1301661941.cos.ap-nanjing.myqcloud.com/501718002288_.pic.jpg
 
 新建一个Github仓库后将本地的Hexo项目push上去后，可以得到一个这样结构的GitHub仓库：
 
-<img src='https://test-1301661941.cos.ap-nanjing.myqcloud.com/github.png?q-sign-algorithm=sha1&q-ak=AKIDtMvHstfXevSvmvhVXxifsu_HQgScyln2_5tH85hiMmlSmjsghekMbwfS5F0wNCb4&q-sign-time=1717997997;1718001597&q-key-time=1717997997;1718001597&q-header-list=host&q-url-param-list=ci-process&q-signature=acd4af2baa51894c7963d118ac38e8ae9fa51e19&x-cos-security-token=DVH6CHSNyWGMY3SGVHwC29o6I37ZuYNa45d6de1456c844454c016ea561318a77VizVC2YlvEmBIInyEW1oRzviT7oCBaXes_D0cERbUQZ5XeleLnbGmkSW7OHQWEpD9RArehRRwQNgRPk2zmr3sKxfH0_XogoF9yNx7uVi8awMC9SUjlvn1QqoPegpmJE1n2TgYQ-SURbP75qrEMufgBTc7S-9_BHAFRSydxmYp5gf3fu1HPUWhvZZGJHaQNPgKaJDd0qbWEDBBpWzVAb4PA&ci-process=originImage'/>
+<img src='https://test-1301661941.cos.ap-nanjing.myqcloud.com/github.png'/>
   
 此时完成仓库的构建，在此之后可以通过本地编写 .md 文档后push到次仓库中。下面将介绍在每次Push后如何自动部署到自己的腾讯云服务器上。
 
 ### 云服务器申请
 
 一腾讯云为例，去腾讯云官网租一个自己经济能力范围内的服务器即可，如下图所示，如果有学生优惠的情况下大概在100¥以内能租个一年。
-<img src='https://test-1301661941.cos.ap-nanjing.myqcloud.com/tengxunyun.png?q-sign-algorithm=sha1&q-ak=AKIDpdcnCm9goWxYmRTi2SpwL-MAze4_CrzMpO8eOznS1_l1khfIZS7fYKM_8rIzbvUo&q-sign-time=1717998414;1718002014&q-key-time=1717998414;1718002014&q-header-list=host&q-url-param-list=ci-process&q-signature=86339c1af9bc4534354a0ffbdef4d38423a334e2&x-cos-security-token=1zDxs89yKSW3zM3GvnaTW4I59eVHS89ac444290b76e70cb2b41c4e83276c2e5a6yv7Gi8_xLT6Sh3aM5q8mZAS9Zf3Vm9KFWsWxIYgEL_JlpvAkx0Foim4AvT1iuFXbIkroT8VG3v9sze4ZJwbikgtxNKsPmxPfcbJCL3KafUXpJ9_OTi_eechf3DV0SbaRJt2cVzaKXRX7EjLn_E2A3j-3vLKDXozIA4AvcGY2Y6Bt8GyRyJfflEBvvGFaYPHYFP9ZmoYr1JJZ5OpbsPP2Q&ci-process=originImage'/>
+<img src='https://test-1301661941.cos.ap-nanjing.myqcloud.com/tengxunyun.png'/>
 
 租完服务器后至于怎么链接，本文不在叙述，如不回使用linux的同学可花1-3天去b站学习下常用的基础命令。
 
 此时有了一台云服务器后，要对此服务器的Git、node 环境进行搭建。搭建完成后即可在云服务器上拉Git仓库中的代码到服务器上，然后在服务器上运行起来并且通过浏览器中输入服务器Ip+hexo项目的端口号访问此项目。此时项目已经实现了外网的部署，其他人就可以通过你的服务器ip+端口号访问了。
-<img src='https://test-1301661941.cos.ap-nanjing.myqcloud.com/ip%2Bport.png?q-sign-algorithm=sha1&q-ak=AKID57_rf5TPjrmHekQDtHo0iabh-I4LPMPVrdhjmnuAwDFTTfv_Gz4xv6ffKX606aVk&q-sign-time=1717999200;1718002800&q-key-time=1717999200;1718002800&q-header-list=host&q-url-param-list=ci-process&q-signature=9b6041bc0d9237e0a1847e7fe4a3395b5962f46b&x-cos-security-token=1zDxs89yKSW3zM3GvnaTW4I59eVHS89a1f42872ecf091160ea0c85f7dc43340a6yv7Gi8_xLT6Sh3aM5q8mUc7RaZCJ1WgQMvJo3dUup3V6TQ_BhSqSWCmrCRLPDCBHcY-58p7YO9FBTz6oQ4xUHaNyfUSWJRTxBaUuDVvC4vnZet34c4E1cLng88mmGkGyq15Cb2f7QyjJI9_NgCLZ_dWVWItDikQK-29Qkj2Jv_zGhaBIF_Puqs_JQ5y4CNrcdUfcnceIHRJe88q-xuLcQ&ci-process=originImage'/>
+<img src='https://test-1301661941.cos.ap-nanjing.myqcloud.com/ip%2Bport.png'/>
 
 接下来是实现github 提供的 webhook在本地项目每次push后来通知到我们的云服务器，云服务器收到github发来的post请求后重新在云服务器中Hexo项目地址中重新通过git拉项目代码，重新执行Hexo 打包命名等。此过程需要我们配置github webhook向我们的服务器发送push通知。具体操作如下：
 
