@@ -2,8 +2,8 @@
 db.json
 *.log
 *.log.*
-# node_modules/
-# public/
+node_modules/
+public/
 .deploy*/
 
 # 忽略 Hexo 缓存文件
